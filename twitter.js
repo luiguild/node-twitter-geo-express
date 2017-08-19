@@ -8,18 +8,30 @@ const T = new Twit({
     timeout_ms: 60 * 1000
 })
 
-const sanFrancisco = [
-    '-122.75', '36.8', '-121.75', '37.8'
-]
+const getTweets = ({lat, long, range, count}) => {
+    return new Promise((resolve, reject) => {
+        return T.get('search/tweets', {
+            q: `geocode:${lat},${long},${range}`,
+            count: count
+        }, (err, data, response) => {
+            if (err) {
+                reject(err)
+            }
 
-const stream = T.stream('statuses/filter', {
-    locations: sanFrancisco
-})
+            const tweet = data.statuses.map((elm, indx, arr) => {
+                return {
+                    created_at: elm.created_at,
+                    text: elm.text,
+                    name: elm.user.name,
+                    screen_name: elm.user.screen_name
+                }
+            })
 
-stream.on('tweet', tweet => {
-    console.log(tweet)
-})
+            resolve(tweet)
+        })
+    })
+}
 
 module.exports = {
-    stream
+    getTweets
 }
