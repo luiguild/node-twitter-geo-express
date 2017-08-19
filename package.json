@@ -1,0 +1,26 @@
+{
+  "name": "node-twitter-geo-express",
+  "description": "Simple RESTful server to use the Twitter API and deliver the tweet geo position",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "eslint": "^4.5.0",
+    "express": "^4.15.4",
+    "twit": "^2.2.9"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luiguild/node-twitter-geo-express.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/luiguild/node-twitter-geo-express/issues"
+  },
+  "homepage": "https://github.com/luiguild/node-twitter-geo-express#readme"
+}
