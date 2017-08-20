@@ -3,6 +3,12 @@ const express = require('express')
 const twitter = require('./twitter')
 const app = express()
 
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*')
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+    next()
+})
+
 app.get('/:lat/:long/:range/:count', function (req, res) {
     const lat = req.params.lat
     const long = req.params.long
@@ -19,7 +25,7 @@ app.get('/:lat/:long/:range/:count', function (req, res) {
                 : '1km',
             count: count !== undefined
                 ? count
-                : 100
+                : 10
         })
             .then(data => res.send(data))
     } else {
